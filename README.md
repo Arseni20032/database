@@ -178,8 +178,8 @@
     - "rating" INTEGER NOT NULL
     - "text" TEXT NOT NULL
     - "date" TIMESTAMP NOT NULL
-    - 
-  12. "PromoCode" 
+ 
+12. "PromoCode" 
     - "id" BIGINT NOT NULL, PK
     - "code" VARCHAR(20) NOT NULL
     - "description" TEXT NOT NULL
