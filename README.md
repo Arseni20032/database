@@ -1,206 +1,151 @@
+# Функциональные требования
+
 **Администратор (ADMIN):**
-- **Добавление и редактирование** информации о **объектах недвижимости**, **клиентах**, **сотрудниках компании** и **сделках**.
-- **Вывод определенного объекта недвижимости**.
-- Получение **статистики по сотрудникам**.
-- Отслеживание **стоимости и суммы сделок** с возможностью выполнения операций по недвижимости и другим действиям.
-- Другие операции с данными, связанными с недвижимостью и многое другое.
+- **Просмотр, добавление, редактирование и удаление** информации о **объектах недвижимости**, **клиентах**, **сотрудниках компании**, **владельцах недвижимости** и **сделках**.
+- Управление **новых вопросов и ответов в FAQ**.
+- Управление **новостей**.
+- Управление **вакансиями**.
 
 **Без регистрации (анонимный пользователь):**
-- Просмотр информации о **категориях объектов** и **самих объектах**.
-- Фильтрация данных по **цене** и **виду объекта**.
+- Регистрация / авторизация
+- Фильтрация данных по **цене** и **категориях объектов**.
+- Просмотр **категории объектов** и **самих объектах**.
+- Просмотр **вопросов и ответов**.
+- Просмотр **промокодов**
+- Просмотр **новостей**
+- Просмотр **вакансий**
+
+**Любой зарегистрированный пользователь**
+- **Выход** из  системы
+- Создание **отзывов**
 
 **Зарегистрированный пользователь, сотрудник(Employee):**
-- Просмотр информации о **сделках**.
 - Доступ к данным о **объектах недвижимости** и **клиентах**, с которыми работает данный сотрудник.
+- Просмотр **сделок**.
+- Просмотр **покупатей/арендаторов** (с которыми есть сделки или с возможностью фильтрации по наличии детей / собак)
+- Просмотр **суммы сделок** наиболее **прибыльного** типа объекта
+- Просмотр **общей суммы и количества сделок**
 
 **Зарегистрированный пользователь, не сотрудник**
+- Фильтрация данных по **цене** и **категориях объектов**.
 - Просмотр информации о **категориях объектов** и **самих объектах**.
-- Фильтрация данных по **цене** и **виду объекта**.
-
-# Функциональные требования:
-1. Управление пользователями:
-   - Регистрация новых пользователей.
-   - Аутентификация и авторизация пользователей.
-   - Возможность смены пароля и персональных данных пользователя.
-
-2. Управление покупателями (Buyer):
-   - Создание новых записей о покупателях.
-   - Редактирование информации о покупателях.
-   - Удаление записей о покупателях.
-   - Связь с пользователями (CustomUser).
-
-3. Управление типами недвижимости (EstateType):
-   - Создание новых типов недвижимости.
-   - Редактирование информации о типах недвижимости.
-   - Удаление типов недвижимости.
-
-4. Управление владельцами (Owner):
-   - Создание новых записей о владельцах.
-   - Редактирование информации о владельцах.
-   - Удаление записей о владельцах.
-   - Связь с пользователями (CustomUser).
-
-5. Управление сотрудниками (Employee):
-   - Создание новых записей о сотрудниках.
-   - Редактирование информации о сотрудниках.
-   - Удаление записей о сотрудниках.
-   - Связь с пользователями (CustomUser).
-
-6. Управление недвижимостью (Estate):
-   - Создание новых записей о недвижимости.
-   - Редактирование информации о недвижимости.
-   - Удаление записей о недвижимости.
-   - Связь с владельцами, покупателями и сотрудниками.
-   - Учет стоимости и характеристик недвижимости.
-
-7. Управление сделками (Deal):
-   - Создание новых записей о сделках.
-   - Редактирование информации о сделках.
-   - Удаление записей о сделках.
-   - Связь с недвижимостью, покупателями и сотрудниками.
-   - Учет стоимости и даты сделок.
-
-8. Управление постами (Post):
-   - Создание новых постов.
-   - Редактирование и удаление существующих постов.
-   - Публикация и снятие с публикации постов.
-   - Учет статуса постов (Draft, Published).
-
-9. Управление FAQ:
-   - Создание новых вопросов и ответов.
-   - Редактирование и удаление существующих вопросов и ответов.
-   - Учет даты добавления вопросов.
-
-10. Управление вакансиями (JobVacancy):
-    - Создание новых вакансий.
-    - Редактирование и удаление существующих вакансий.
-    - Учет местоположения и заработной платы.
-
-11. Управление отзывами (Review):
-    - Создание новых отзывов.
-    - Редактирование и удаление существующих отзывов.
-    - Учет рейтинга и даты отзывов.
-
-12. Управление промокодами (PromoCode):
-    - Создание новых промокодов.
-    - Редактирование и удаление существующих промокодов.
-    - Учет активности и дат создания промокодов.
+- Просмотр **графика** о **количествах сделок** по датам
+- Просмотр **таймзоны** для зарегистрированных юзеров
 
 # Сущности
 
-1. "CustomUser" 
-    - "id" BIGINT NOT NULL, PK
-    - "username" VARCHAR(150) NOT NULL
-    - "password" VARCHAR(128) NOT NULL
-    - "first_name" VARCHAR(30) NOT NULL
-    - "last_name" VARCHAR(150) NOT NULL
-    - "email" VARCHAR(254) NOT NULL
-    - "date_joined" TIMESTAMP WITH TIME ZONE NOT NULL
-    - "date_of_birth" DATE
-    - "timezone" VARCHAR(50) NOT NULL
-    - "is_staff" BOOLEAN NOT NULL
-    - "is_active" BOOLEAN NOT NULL
-    - "is_superuser" BOOLEAN NOT NULL
+1. **CustomUser**
+    - `id` (BIGINT NOT NULL, PK) - Уникальный идентификатор пользователя.
+    - `username` (VARCHAR(150) NOT NULL) - Имя пользователя.
+    - `password` (VARCHAR(128) NOT NULL) - Хэшированный пароль пользователя.
+    - `first_name` (VARCHAR(30) NOT NULL) - Имя пользователя.
+    - `last_name` (VARCHAR(150) NOT NULL) - Фамилия пользователя.
+    - `email` (VARCHAR(254) NOT NULL) - Электронная почта пользователя.
+    - `date_joined` (TIMESTAMP WITH TIME ZONE NOT NULL) - Дата и время регистрации пользователя.
+    - `date_of_birth` (DATE) - Дата рождения пользователя (необязательно).
+    - `timezone` (VARCHAR(50) NOT NULL) - Часовой пояс пользователя.
+    - `is_staff` (BOOLEAN NOT NULL) - Флаг, определяющий, является ли пользователь персоналом.
+    - `is_active` (BOOLEAN NOT NULL) - Флаг, указывающий, активен ли пользователь.
+    - `is_superuser` (BOOLEAN NOT NULL) - Флаг, указывающий, является ли пользователь суперпользователем.
+    - `phone_number` (VARCHAR(255)) - Номер телефона пользователя (необязательно).
 
-2. "Buyer" 
-    - "id" BIGINT NOT NULL, PK
-    - "phone_number" VARCHAR(255) NOT NULL
-    - "user_id" BIGINT NOT NULL, FK -> CustomUser
-    - "full_name" VARCHAR(255) NOT NULL
-    - "email" VARCHAR(255) NOT NULL
-    - "created_at" TIMESTAMP NOT NULL
-    - "updated_at" TIMESTAMP NOT NULL
+2. **Buyer**
+    - `id` (BIGINT NOT NULL, PK) - Уникальный идентификатор покупателя.
+    - `user_id` (BIGINT NOT NULL, FK -> CustomUser) - Ссылка на пользователя, связанного с этим покупателем.
+    - `has_pets` (BOOLEAN) - Флаг, указывающий, есть ли у покупателя домашние животные (необязательно).
+    - `has_children` (BOOLEAN) - Флаг, указывающий, есть ли у покупателя дети (необязательно).
+    - `created_at` (TIMESTAMP) - Дата и время создания записи.
+    - `updated_at` (TIMESTAMP) - Дата и время обновления записи.
 
-3. "EstateType" 
-    - "id" BIGINT NOT NULL, PK
-    - "type_estate" VARCHAR(255) NOT NULL
+3. **EstateType**
+    - `id` (BIGINT NOT NULL, PK) - Уникальный идентификатор типа недвижимости.
+    - `type_estate` (VARCHAR(255) NOT NULL) - Тип недвижимости, например, "Квартира", "Дом", "Офис" и т. д.
 
-4. "Owner" 
-    - "id" BIGINT NOT NULL, PK
-    - "user_id" BIGINT NOT NULL, FK -> CustomUser
-    - "full_name" VARCHAR(255) NOT NULL
-    - "phone_number" VARCHAR(255) NOT NULL
-    - "email" VARCHAR(255) NOT NULL
-    - "created_at" TIMESTAMP NOT NULL
-    - "updated_at" TIMESTAMP NOT NULL
+4. **Employee**
+    - `id` (BIGINT NOT NULL, PK) - Уникальный идентификатор сотрудника.
+    - `user_id` (BIGINT NOT NULL, FK -> CustomUser) - Ссылка на пользователя, связанного с этим сотрудником.
+    - `full_name` (VARCHAR(255)) - Полное имя сотрудника.
+    - `phone_number` (VARCHAR(255)) - Номер телефона сотрудника.
+    - `email` (VARCHAR(255)) - Электронная почта сотрудника.
+    - `deal_count` (INTEGER NOT NULL) - Количество сделок, совершенных сотрудником.
+    - `created_at` (TIMESTAMP) - Дата и время создания записи.
+    - `updated_at` (TIMESTAMP) - Дата и время обновления записи.
+    - `photo` (VARCHAR(255)) - Фотография сотрудника (путь к файлу).
+    - `responsibilities` (VARCHAR(255) NOT NULL) - Ответственность сотрудника, например, "Менеджер по продажам".
 
-5. "Employee" 
-    - "id" BIGINT NOT NULL, PK
-    - "user_id" BIGINT NOT NULL, FK -> CustomUser
-    - "full_name" VARCHAR(255) NOT NULL
-    - "phone_number" VARCHAR(255) NOT NULL
-    - "email" VARCHAR(255) NOT NULL
-    - "deal_count" INTEGER NOT NULL
-    - "created_at" TIMESTAMP NOT NULL
-    - "updated_at" TIMESTAMP NOT NULL
-    - "photo" VARCHAR(100)
-    - "responsibilities" VARCHAR(255) NOT NULL
+5. **Owner**
+    - `id` (BIGINT NOT NULL, PK) - Уникальный идентификатор владельца.
+    - `user_id` (BIGINT NOT NULL, FK -> CustomUser) - Ссылка на пользователя, связанного с этим владельцем.
+    - `created_at` (TIMESTAMP) - Дата и время создания записи.
+    - `updated_at` (TIMESTAMP) - Дата и время обновления записи.
+    - `bank_account_number` (VARCHAR(34)) - Номер банковского счета владельца.
 
-6. "Estate" 
-    - "id" BIGINT NOT NULL, PK
-    - "name" VARCHAR(255) NOT NULL
-    - "description" TEXT NOT NULL
-    - "address" VARCHAR(255) NOT NULL
-    - "creation_date" DATE NOT NULL
-    - "square" FLOAT NOT NULL
-    - "number_rooms" INTEGER NOT NULL
-    - "ceiling_height" FLOAT NOT NULL
-    - "owner_id" BIGINT NOT NULL, FK -> Owner
-    - "responsible_employee_id" BIGINT NOT NULL, FK -> Employee
-    - "estate_type_id" BIGINT NOT NULL, FK -> EstateType
-    - "cost" FLOAT
-    - "created_at" TIMESTAMP NOT NULL
-    - "updated_at" TIMESTAMP NOT NULL
+6. **Estate**
+    - `id` (BIGINT NOT NULL, PK) - Уникальный идентификатор недвижимости.
+    - `name` (VARCHAR(255)) - Название недвижимости.
+    - `description` (TEXT) - Описание недвижимости.
+    - `address` (VARCHAR(255)) - Адрес недвижимости.
+    - `creation_date` (DATE NOT NULL) - Дата создания недвижимости.
+    - `square` (FLOAT NOT NULL) - Площадь недвижимости.
+    - `number_rooms` (INTEGER NOT NULL) - Количество комнат.
+    - `ceiling_height` (FLOAT NOT NULL) - Высота потолков.
+    - `owner_id` (BIGINT NOT NULL, FK -> Owner) - Ссылка на владельца недвижимости.
+    - `responsible_employee_id` (BIGINT NOT NULL, FK -> Employee) - Ссылка на сотрудника, ответственного за недвижимость.
+    - `estate_type_id` (BIGINT NOT NULL, FK -> EstateType) - Ссылка на тип недвижимости.
+    - `cost` (FLOAT) - Стоимость недвижимости (необязательно).
+    - `created_at` (TIMESTAMP) - Дата и время создания записи.
+    - `updated_at` (TIMESTAMP) - Дата и время обновления записи.
 
-7. "Deal" 
-    - "id" BIGINT NOT NULL, PK
-    - "estate_id" BIGINT NOT NULL, FK -> Estate
-    - "buyer_id" BIGINT NOT NULL, FK -> Buyer
-    - "employee_id" BIGINT NOT NULL, FK -> Employee
-    - "cost" FLOAT NOT NULL
-    - "deal_date" DATE NOT NULL
-    - "deal_date_end" TIMESTAMP NOT NULL
-    - "created_at" TIMESTAMP NOT NULL
-    - "updated_at" TIMESTAMP NOT NULL
+7. **Deal**
+    - `id` (BIGINT NOT NULL, PK) - Уникальный идентификатор сделки.
+    - `estate_id` (BIGINT NOT NULL, FK -> Estate) - Ссылка на недвижимость, связанную с этой сделкой.
+    - `buyer_id` (BIGINT NOT NULL, FK -> Buyer) - Ссылка на покупателя, участвующего в сделке.
+    - `owner_id` (BIGINT NOT NULL, FK -> Owner) - Ссылка на владельца недвижимости, участвующего в сделке.
+    - `employee_id` (BIGINT NOT NULL, FK -> Employee) - Ссылка на сотрудника, связанного с сделкой.
+    - `cost` (FLOAT NOT NULL) - Стоимость сделки.
+    - `deal_date` (DATE NOT NULL) - Дата сделки.
+    - `deal_date_end` (TIMESTAMP NOT NULL) - Дата и время окончания сделки.
+    - `created_at` (TIMESTAMP) - Дата и время создания записи.
+    - `updated_at` (TIMESTAMP) - Дата и время обновления записи.
 
-8. "Post" 
-    - "id" BIGINT NOT NULL, PK
-    - "title" VARCHAR(250) NOT NULL
-    - "slug" VARCHAR(255) NOT NULL
-    - "body" TEXT NOT NULL
-    - "publish" TIMESTAMP WITH TIME ZONE NOT NULL
-    - "created" TIMESTAMP NOT NULL
-    - "updated" TIMESTAMP NOT NULL
-    - "author_id" BIGINT NOT NULL, FK -> CustomUser
-    - "photo" VARCHAR(100)
-    - "status" VARCHAR(2) NOT NULL
+8. **Post**
+    - `id` (BIGINT NOT NULL, PK) - Уникальный идентификатор поста.
+    - `title` (VARCHAR(250) NOT NULL) - Заголовок поста.
+    - `slug` (VARCHAR(255)) - Уникальный слаг (часть URL) для поста.
+    - `body` (TEXT NOT NULL) - Текст поста.
+    - `publish` (TIMESTAMP WITH TIME ZONE NOT NULL) - Дата и время публикации поста.
+    - `created` (TIMESTAMP) - Дата и время создания поста.
+    - `updated` (TIMESTAMP) - Дата и время обновления поста.
+    - `author_id` (BIGINT NOT NULL, FK -> CustomUser) - Ссылка на автора поста.
+    - `photo` (VARCHAR(255)) - Фотография поста (путь к файлу).
+    - `status` (VARCHAR(2) NOT NULL) - Статус поста (Draft или Published).
 
-9. "FAQ" 
-    - "id" BIGINT NOT NULL, PK
-    - "question" VARCHAR(255) NOT NULL
-    - "answer" TEXT NOT NULL
-    - "date_added" TIMESTAMP NOT NULL
+9. **FAQ**
+    - `id` (BIGINT NOT NULL, PK) - Уникальный идентификатор часто задаваемого вопроса.
+    - `question` (VARCHAR(255) NOT NULL) - Вопрос.
+    - `answer` (TEXT NOT NULL) - Ответ на вопрос.
+    - `date_added` (TIMESTAMP NOT NULL) - Дата и время добавления вопроса и ответа.
 
-10. "JobVacancy" 
-    - "id" BIGINT NOT NULL, PK
-    - "title" VARCHAR(255) NOT NULL
-    - "description" TEXT NOT NULL
-    - "location" VARCHAR(100) NOT NULL
-    - "salary" DECIMAL(10, 2)
-    - "published_date" TIMESTAMP NOT NULL
+10. **JobVacancy**
+    - `id` (BIGINT NOT NULL, PK) - Уникальный идентификатор вакансии.
+    - `title` (VARCHAR(255) NOT NULL) - Название вакансии.
+    - `description` (TEXT NOT NULL) - Описание вакансии.
+    - `location` (VARCHAR(100) NOT NULL) - Местоположение вакансии.
+    - `salary` (DECIMAL(10, 2)) - Заработная плата (необязательно).
+    - `published_date` (TIMESTAMP NOT NULL) - Дата и время публикации вакансии.
 
-11. "Review" 
-    - "id" BIGINT NOT NULL, PK
-    - "user_id" BIGINT NOT NULL, FK -> CustomUser
-    - "name" VARCHAR(255) NOT NULL
-    - "rating" INTEGER NOT NULL
-    - "text" TEXT NOT NULL
-    - "date" TIMESTAMP NOT NULL
- 
-12. "PromoCode" 
-    - "id" BIGINT NOT NULL, PK
-    - "code" VARCHAR(20) NOT NULL
-    - "description" TEXT NOT NULL
-    - "is_active" BOOLEAN NOT NULL
-    - "created_date" TIMESTAMP NOT NULL
-    - "archived_date" TIMESTAMP
+11. **Review**
+    - `id` (BIGINT NOT NULL, PK) - Уникальный идентификатор отзыва.
+    - `user_id` (BIGINT NOT NULL, FK -> CustomUser) - Ссылка на пользователя, оставившего отзыв.
+    - `name` (VARCHAR(255) NOT NULL) - Имя автора отзыва.
+    - `rating` (INTEGER NOT NULL) - Рейтинг отзыва (от 1 до 5).
+    - `text` (TEXT NOT NULL) - Текст отзыва.
+    - `date` (TIMESTAMP NOT NULL) - Дата и время добавления отзыва.
+
+12. **PromoCode**
+    - `id` (BIGINT NOT NULL, PK) - Уникальный идентификатор промо-кода.
+    - `code` (VARCHAR(20) NOT NULL) - Уникальный код промо-кода.
+    - `description` (TEXT NOT NULL) - Описание промо-кода.
+    - `is_active` (BOOLEAN NOT NULL) - Флаг, указывающий, активен ли промо-код.
+    - `created_date` (TIMESTAMP NOT NULL) - Дата и время создания промо-кода.
+    - `archived_date` (TIMESTAMP) - Дата и время архивации промо-к
